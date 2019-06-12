@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: mrs
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: K
+Implementation-Vendor-Id: mrs
+Build-Jdk: 1.8.0_211
+Implementation-URL: http://projects.spring.io/spring-boot/mrs/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

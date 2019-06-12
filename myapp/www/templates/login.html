@@ -1,0 +1,29 @@
+<ion-view title="login" nav-transition="none" id="page13">
+  <ion-content padding="true" class="has-header">
+    <form id="login-form10" class="list">
+      <ion-list id="login-list10">
+        <label class="item item-input" id="login-input9">
+          <input type="text" placeholder="아이디" ng-model="user.userId">
+        </label>
+        <label class="item item-input" id="login-input11">
+          <input type="password" placeholder="비밀번호" ng-model="user.password">
+        </label>
+      </ion-list>
+      <div class="spacer" style="height: 40px;"></div>
+      <div id="login-markdown12" style="text-align:center;" class="show-list-numbers-and-dots"></div>
+      <button id="login-button10" ng-click="compare()" class="button button-stable button-block">로그인</button>
+      <a ui-sref="signup()" id="login-button16" class="button button-positive button-small button-block button-clear">새 계정 만들기</a>
+    </form>
+    <!-- <div id="login-markdown13" class="show-list-numbers-and-dots">
+      <p style="color:#000000;">your Id is : {{user.id}}</p>
+
+      <p style="color:#000000;">your Pw is : {{user.pw}}</p>
+
+      <p style="color:#000000;">LoginState : {{result}}</p>
+
+      <p style="color:#000000;">admin Id is : {{admin.id}}</p>
+
+      <p style="color:#000000;">admin Pw is : {{admin.pw}}</p>
+    </div> -->
+  </ion-content>
+</ion-view>

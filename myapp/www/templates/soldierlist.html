@@ -1,0 +1,23 @@
+<ion-view title="soldierlist" id="page8">
+  <ion-nav-buttons side="right" scroll="false" class="has-header">
+    <button class="button button-icon icon ion-ios-minus-outline" 
+          ng-click="data.showDelete = !data.showDelete;"></button>
+  </ion-nav-buttons>
+  <ion-content padding="false" scroll="false" class="has-header">
+      <ion-item class="item-divider">{{group}}</ion-item>
+    <form id="soldierlist-form7" class="list">
+      <label class="item item-input" id="soldierlist-search2">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="검색할 사람의 이름을 입력해주세요">
+      </label>
+    </form>
+    <div id="soldierlist-container5" class="top-container">
+      <ion-list show-delete="data.showDelete">
+        <ion-item ng-repeat="soldier in soldiers" class="item-icon-left" ui-sref="individualmanage({soldierId:soldier.soldierId})">
+          <i class="icon ion-social-octocat"></i>{{soldier.soldierClass}} {{soldier.soldierName}}
+          <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
+          </ion-delete-button></ion-item>
+      </ion-list> 
+    </div>
+  </ion-content>
+</ion-view>

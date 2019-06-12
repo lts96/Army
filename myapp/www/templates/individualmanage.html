@@ -1,0 +1,95 @@
+<ion-view title="individualmanage" id="page7">
+  <ion-content padding="false" scroll="false" class="has-header">
+    <ion-list id="individualmanage-list8">
+      <ion-item class="item-avatar" id="individualmanage-list-item7">
+        <h2>이름</h2>
+        <p>전화번호</p>
+      </ion-item>
+      <ion-item class="item-divider" id="individualmanage-list-item-divider3"> {{dv.dvtext}}</ion-item>
+      <ion-toggle toggle-class="toggle-positive" id="individualmanage-toggle4" ng-show="activeSection==3" ng-value="push.pushtext">외출 / 외박 설정</ion-toggle>
+    </ion-list>
+    <ion-scroll id="individualmanage-container6" ng-show="activeSection==1" class="top-container">
+      <ion-list id="individualmanage-list19">
+        <ion-item id="individualmanage-list-item18">로그가 이곳에 표시됨.</ion-item>
+      </ion-list>
+    </ion-scroll>
+    <ion-scroll id="individualmanage-container7" ng-show="activeSection==2" class="top-container">
+      <div id="individualmanage-markdown9" class="show-list-numbers-and-dots padd">
+        <p style="color:#000000;">사용자 상태 로그가 이곳에 표시됨</p>
+
+        <p style="color:#000000;">밑으로 스크롤 가능함</p>
+
+        <p style="color:#000000;">예시)</p>
+
+        <p style="color:#000000;">[YYYY-MM-DD HH:MM] Status : Online</p>
+
+        <p style="color:#000000;">[YYYY-MM-DD HH:MM] Status : Online</p>
+
+        <p style="color:#000000;">
+          <strong>[YYYY-MM-DD HH:MM] Status : Offline</strong>
+        </p>
+
+        <p style="color:#000000;">a1111111111111111</p>
+
+        <p style="color:#000000;">a202012021fdsfasdsfddddddddddd</p>
+
+        <p style="color:#000000;">sa</p>
+
+        <p style="color:#000000;">ddsfasd</p>
+
+        <p style="color:#000000;">sadfaaasdfasdfasdfsdaf</p>
+
+        <p style="color:#000000;">dasd</p>
+
+        <p style="color:#000000;">1</p>
+
+        <p style="color:#000000;">dd d d ddddd</p>
+
+        <p style="color:#000000;">d</p>
+
+        <p style="color:#000000;">d</p>
+
+        <p style="color:#000000;">d</p>
+
+        <p style="color:#000000;">d s
+        </p>
+
+        <p style="color:#000000;">asd das dsa
+        </p>
+
+        <p style="color:#000000;">asd</p>
+
+        <p style="color:#000000;">a ds ffda sfads
+        </p>
+
+        <p style="color:#000000;">dsfa</p>
+
+        <p style="color:#000000;">sdf sd
+        </p>
+
+        <p style="color:#000000;">sdaf</p>
+
+        <p style="color:#000000;">A</p>
+
+        <p style="color:#000000;">sdaffffffffffffffffffffff ff
+        </p>
+      </div>
+    </ion-scroll>
+    <div id="individualmanage-container9" ng-show="activeSection==3" class="padd">
+      <form id="individualmanage-form5" class="list">
+        <label class="item item-input" id="individualmanage-input10">
+          <input type="text" placeholder="메세지를 입력해주세요">
+        </label>
+        <button id="individualmanage-button17" ng-click="alert()" style="border-radius:10px 10px 10px 10px;" class="button button-positive button-full">푸시알림 전송</button>
+      </form>
+      <form id="individualmanage-form6" class="list">
+        <button id="individualmanage-button20" ng-click="confirm()" style="border-radius:10px 10px 10px 10px;" class="button button-assertive button-full">※주의※ 휴대폰 강제 종료</button>
+      </form>
+    </div>
+    <div id="individualmanage-button-bar1" class="button-bar bottom-form">
+      <button id="individualmanage-button11" ng-click="changeSection(1); dv.dvtext=&quot;위반목록&quot;" ng-class="{'active':activeSection==1}" style="border-radius:0px 0px 0px 0px;" class="button button-positive">위반목록</button>
+      <button id="individualmanage-button12" ng-click="changeSection(2); dv.dvtext=&quot;로그보기&quot;" ng-class="{'active':activeSection==2}" style="border-radius:0px 0px 0px 0px;" class="button button-positive">로그보기</button>
+      <button id="individualmanage-button13" ng-click="changeSection(3); dv.dvtext=&quot;기기제어&quot;" ng-class="{'active':activeSection==3}" style="border-radius:0px 0px 0px 0px;" class="button button-positive">관리</button>
+    </div>
+  </ion-content>
+</ion-view>

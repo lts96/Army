@@ -1,0 +1,17 @@
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss";
+.top-container {
+	height: 100%;
+	overflow: scroll;
+}
+
+.bottom-form {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
+
+.padd {
+	padding: 5%;
+}
+
