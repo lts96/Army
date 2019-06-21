@@ -1,10 +1,13 @@
 angular.module('app.controllers', [])
 
-.controller('welcomeslideCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('welcomeslideCtrl', ['$scope', '$stateParams','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
+function ($scope, $stateParams,$state) {
+    console.log(localStorage.firststate);
+    if(localStorage.firststate==true){
+        $state.go('firstpage');
+    }
 }])
    
 .controller('loginCtrl', ['$scope', '$stateParams', '$state', '$http','$q', 'AccountService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -26,6 +29,7 @@ function ($scope, $stateParams, $state, $http, $q, AccountService) {
             let response=res.data;
             if(response.result=="LOGIN_SUCCESS"){
                 AccountService.setAccount($scope.user.userId);
+                sessionStorage.id=$scope.user.userId;
                 $state.go('main');
             }
             else{
@@ -80,12 +84,16 @@ function ($scope, $stateParams, $state, $http, $q) {
 
 }])
    
-.controller('mainCtrl', ['$scope', '$stateParams', 'AccountService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('mainCtrl', ['$scope', '$stateParams', 'AccountService','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,AccountService) {
-    var user=AccountService.getAccount();
+function ($scope, $stateParams,AccountService,$state) {
+    var user=sessionStorage.id;
     $scope.userid=user;
+    $scope.logout=function(){
+        sessionStorage.clear();
+        $state.go('login',{reload: true});
+    }
 }])
 
 .controller('soldierlistCtrl', ['$scope', '$stateParams', 'SoldierService','$http', 'AccountService',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -100,6 +108,7 @@ function ($scope, $stateParams, SoldierService, $http, AccountService) {
         UP=confirm("정말 사용자를 삭제하시겠습니까?")
         if(UP){
             // $scope.items.splice($scope.items.indexOf(item), 1);
+            this.refresh();
             alert("사용자를 삭제하였습니다.");
         }
         
@@ -111,7 +120,7 @@ function ($scope, $stateParams, SoldierService, $http, AccountService) {
         $scope.soldiers=res;
     });
 
-    $http.put("http://localhost:8080/main/userlist/userGroup", {'userId':AccountService.getAccount()}, {
+    $http.put("http://localhost:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
         headers : { 
             'Content-type': 'application/json' 
         }}).then(function(res) {
@@ -119,6 +128,18 @@ function ($scope, $stateParams, SoldierService, $http, AccountService) {
         // console.log(response.result);
         $scope.group=response.result;
     });
+
+    $scope.doRefresh = function() {
+        $http.put("http://localhost:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
+            headers : { 
+                'Content-type': 'application/json' 
+            }}).then(function(res) {
+            let response=res.data;
+            // console.log(response.result);
+            $scope.group=response.result;
+        });
+        $scope.$broadcast('scroll.refreshComplete');
+    };
 }])
    
 .controller('groupsoldierlistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -157,6 +178,7 @@ function ($scope, $stateParams, SoldierService,$http) {
     $scope.alert=function(){
         alert("기기에 푸쉬알림을 보냈습니다.");
     }
+    
 }])
    
 .controller('delegationCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -181,13 +203,11 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('firstpageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('firstpageCtrl', ['$scope', '$stateParams','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams, $state) {
+    localStorage.setItem('firststate', false);
 
-    $scope.alert=function(){
-        alert('정말 종료하시겠습니까?');
-    }
 }])
  

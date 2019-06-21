@@ -4,14 +4,10 @@
           ng-click="data.showDelete = !data.showDelete;"></button>
   </ion-nav-buttons>
   <ion-content padding="false" scroll="true" class="has-header">
-      <ion-refresher slot="fixed">
-          <ion-refresher-content
-            pulling-icon="arrow-dropdown"
-            pulling-text="Pull to refresh"
-            refreshing-spinner="circles"
-            refreshing-text="Refreshing...">
-          </ion-refresher-content>
-        </ion-refresher>
+        <ion-refresher
+        pulling-text="당겨서 새로고침"
+        on-refresh="doRefresh()">
+      </ion-refresher>
     <!-- <form id="soldierlist-form7" class="list">
         <ion-item class="item-divider">{{group}}</ion-item>
       <label class="item item-input" id="soldierlist-search2">
@@ -20,7 +16,7 @@
       </label>
     </form> -->
     <div id="soldierlist-container5" class="has-header">
-      <ion-list show-delete="data.showDelete" scroll="true">
+      <ion-list show-delete="data.showDelete" scroll="true" scroll-glue>
         <ion-item ng-repeat="soldier in soldiers" class="item-icon-left" ui-sref="individualmanage({soldierId:soldier.soldierId})">
           <i class="icon ion-social-octocat"></i>{{soldier.soldierClass}} {{soldier.soldierName}}
           <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">

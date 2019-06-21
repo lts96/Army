@@ -8,13 +8,13 @@
       <ion-item class="item-divider" id="individualmanage-list-item-divider3"> {{dv.dvtext}}</ion-item>
       <ion-toggle toggle-class="toggle-positive" id="individualmanage-toggle4" ng-show="activeSection==3" ng-value="push.pushtext">외출 / 외박 설정</ion-toggle>
     </ion-list>
-    <ion-scroll id="individualmanage-container6" ng-show="activeSection==1" class="top-container">
+    <ion-scroll scroll-glue ng-show="activeSection==1" class="top-container">
       <ion-list id="individualmanage-list19">
         <ion-item id="individualmanage-list-item18">로그가 이곳에 표시됨.</ion-item>
       </ion-list>
     </ion-scroll>
-    <ion-scroll id="individualmanage-container7" ng-show="activeSection==2" class="top-container">
-      <div id="individualmanage-markdown9" class="show-list-numbers-and-dots padd">
+    <ion-scroll scroll-glue ng-show="activeSection==2" class="top-container">
+      <div id="individualmanage-markdown9" class="show-list-numbers-and-dots padd" >
         <p style="color:#000000;">사용자 상태 로그가 이곳에 표시됨</p>
 
         <p style="color:#000000;">밑으로 스크롤 가능함</p>

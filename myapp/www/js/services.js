@@ -26,7 +26,7 @@ angular.module('app.services', [])
         getSoldiers:function() {
             var deferred = $q.defer();
                     
-            $http.put("http://localhost:8080/main/userlist/userSoldier",{'userId':AccountService.getAccount()}).then(function(res) {
+            $http.put("http://localhost:8080/main/userlist/userSoldier",{'userId':sessionStorage.id}).then(function(res) {
                 var soldiers=res.data.map(function(soldier){
                     // soldier.id=soldier.url;
                     console.dir(soldier);
