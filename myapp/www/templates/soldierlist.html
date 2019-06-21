@@ -1,4 +1,4 @@
-<ion-view title ="soldierlist" id="page8">
+<ion-view title ="병사목록" id="page8">
   <ion-nav-buttons side="right" scroll="false" class="has-header">
     <button class="button button-icon icon ion-ios-minus-outline" 
           ng-click="data.showDelete = !data.showDelete;"></button>
@@ -16,7 +16,7 @@
       </label>
     </form> -->
     <div id="soldierlist-container5" class="has-header">
-      <ion-list show-delete="data.showDelete" scroll="true" scroll-glue>
+      <ion-list show-delete="data.showDelete" scroll="true">
         <ion-item ng-repeat="soldier in soldiers" class="item-icon-left" ui-sref="individualmanage({soldierId:soldier.soldierId})">
           <i class="icon ion-social-octocat"></i>{{soldier.soldierClass}} {{soldier.soldierName}}
           <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
