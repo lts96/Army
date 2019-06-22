@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              tools:context=".Application.fragment.LoginFrag">
+    <LinearLayout android:layout_width="match_parent"
+                  android:paddingBottom="30dp"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+                  android:text="아이디"
+                  android:padding="10dp"
+                  android:layout_height="match_parent"/>
+        <EditText android:layout_width="match_parent"
+                  android:id="@+id/loginId"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:paddingBottom="30dp"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+                  android:text="비밀번호"
+                  android:padding="10dp"
+                  android:layout_height="match_parent"/>
+        <EditText android:layout_width="match_parent"
+                  android:id="@+id/loginPw"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <Button android:layout_width="match_parent"
+            android:id="@+id/loginButton"
+            android:text="로그인"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+    <Button android:layout_width="match_parent"
+            android:id="@+id/loginToSelect"
+            android:layout_margin="10dp"
+            android:text="처음으로"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+
+              android:layout_height="match_parent"
+              tools:context=".Application.fragment.SignFrag">
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:paddingBottom="30dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="80dp"
+                  android:gravity="center"
+                  android:text="이름"
+
+                  android:padding="10dp"
+                  android:layout_height="match_parent"/>
+        <EditText android:layout_width="match_parent"
+                  android:id="@+id/signName"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:paddingBottom="30dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="80dp"
+                  android:gravity="center"
+                  android:text="아이디"
+                  android:padding="10dp"
+                  android:layout_height="match_parent"/>
+        <EditText android:layout_width="match_parent"
+                  android:id="@+id/signId"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:paddingBottom="30dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="80dp"
+                  android:gravity="center"
+                  android:text="비밀번호"
+                  android:padding="10dp"
+                  android:layout_height="match_parent"/>
+        <EditText android:layout_width="match_parent"
+                  android:id="@+id/signPw"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:paddingBottom="30dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="80dp"
+                  android:gravity="center"
+                  android:text="비밀번호확인"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+        <EditText android:layout_width="match_parent"
+                  android:id="@+id/signPwCheck"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <Button android:layout_width="match_parent"
+            android:id="@+id/signButton"
+            android:text="회원가입"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+    <Button android:layout_width="match_parent"
+            android:id="@+id/signToSelect"
+            android:layout_margin="10dp"
+            android:text="처음으로"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

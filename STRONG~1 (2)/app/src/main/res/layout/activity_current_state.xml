@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Application.Activity.CurrentState">
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="3"
+                  android:text="이름 : "
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="7"
+                  android:id="@+id/currStateName"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="3"
+                  android:text="핸드폰 번호 : "
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="7"
+                  android:id="@+id/currStateTel"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="3"
+                  android:text="전체 제어 : "
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="7"
+                  android:id="@+id/currStateIsTotal"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="3"
+                  android:text="카메라 제어 : "
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="7"
+                  android:id="@+id/currStateIsCamera"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="3"
+                  android:text="스크린 잠금 : "
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="7"
+                  android:id="@+id/currStateIsScreen"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="3"
+                  android:text="GPS 제어 : "
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="7"
+                  android:id="@+id/currStateIsGps"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</LinearLayout>

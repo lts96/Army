@@ -6,7 +6,7 @@ angular.module('app.controllers', [])
 function ($scope, $stateParams,$state) {
     console.log(localStorage.firststate);
     if(localStorage.firststate==true){
-        $state.go('firstpage');
+        $state.go('firstpage',{},{reload:'firstpage'});
     }
 }])
    
@@ -30,7 +30,7 @@ function ($scope, $stateParams, $state, $http, $q, AccountService) {
             if(response.result=="LOGIN_SUCCESS"){
                 AccountService.setAccount($scope.user.userId);
                 sessionStorage.id=$scope.user.userId;
-                $state.go('main');
+                $state.go('main',{},{reload:'main'});
             }
             else{
             alert("아이디나 비밀번호가 틀렸습니다.");
@@ -67,6 +67,7 @@ function ($scope, $stateParams, $state, $http, $q) {
                     screen:"0",
                     roleName:"ADMIN",
                     imei:"0",
+                    groupPin:"0"
                 };
                 let url="http://221.155.56.120:8080/main/sign_in";
                 $http.post(url, body, {headers : { 'Content-type': 'application/json' }}).then(function(res) {
@@ -97,28 +98,41 @@ function ($scope, $stateParams, $state, $http, $q) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,AccountService,$state) {
-    var user=sessionStorage.id;
-    $scope.userid=user;
+    $scope.idrefresh=function(){
+        var user=sessionStorage.id;
+        $scope.userid=user;
+    }
     $scope.logout=function(){
         sessionStorage.clear();
-        $state.go('login',{reload: true});
+        $state.go('login',{},{reload: 'login'});
+    }
+    $scope.golist=function(){
+        $state.go('soldierlist',{},{reload: 'soldierlist'});
+    }
+    $scope.gogroup=function(){
+        $state.go('groupsoldierlist',{},{reload: 'groupsoldierlist'});
+    }
+    $scope.gosetting=function(){
+        $state.go('setting',{},{reload: 'setting'});
     }
 }])
 
-.controller('soldierlistCtrl', ['$scope', '$stateParams', 'SoldierService','$http', 'AccountService',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('soldierlistCtrl', ['$scope', '$stateParams', 'SoldierService','$http', 'AccountService', '$state',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, SoldierService, $http, AccountService) {
+function ($scope, $stateParams, SoldierService, $http, AccountService, $state) {
     $scope.data = {
         showDelete: false
     };
+
     $scope.onItemDelete = function(soldier) {
         var UP;
         UP=confirm("정말 사용자를 삭제하시겠습니까?")
         if(UP){
             // $scope.items.splice($scope.items.indexOf(item), 1);
-            this.refresh();
             alert("사용자를 삭제하였습니다.");
+            // location.reload();
+            $state.go('soldierlist',{},{reload: 'soldierlist'});
         }
     };
 

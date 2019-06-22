@@ -1,11 +1,11 @@
-<ion-view title="main" hide-nav-bar="true" hide-back-button="true">
+<ion-view title="main" hide-nav-bar="true" hide-back-button="true" ng-class="idrefresh()">
   <ion-content padding="true" class="manual-ios-statusbar-padding">
     <div class="spacer" style="height: 5%;"></div>
     <img src="img/logoBG.png" style="display: block; width: 90%; height: auto; margin-left: auto; margin-right: auto;">
     <div class="spacer" style="height: 2%;"></div>
     <hr size="5" noshade style="width: 80%;">
     <h2 id="main-heading6" style="color:#000000;font-weight:600;text-align:center;">환영합니다</h2>
-    <div id="main-markdown17" ng-class="idmodel=getId()" style="text-align:center;" class="show-list-numbers-and-dots">
+    <div id="main-markdown17" style="text-align:center;" class="show-list-numbers-and-dots">
       <p style="color:#000000;">{{userid}}님</p>
     </div>
     <div class="spacer" style="height: 5%;"></div>
@@ -13,7 +13,7 @@
       <p style="color:#000000;padding:5%;">버튼을 눌러 원하는 작업을 선택하세요</p>
     </div>
     <div style="margin:auto;width: 50%;">
-      <button ui-sref="soldierlist()" style="font-size:20px;border-radius:30px 30px 30px 30px;padding:5%;" class="button button-block btn-solid effect-scale icon-left ion-android-person">병사관리</button>
+      <button ng-click="golist()" style="font-size:20px;border-radius:30px 30px 30px 30px;padding:5%;" class="button button-block btn-solid effect-scale icon-left ion-android-person">병사관리</button>
       <button ui-sref="groupmanage()" style="font-size:20px;border-radius:30px 30px 30px 30px;padding:5%;" class="button button-block btn-solid effect-scale icon-left ion-ios-people">그룹관리</button>
       <button ui-sref="setting()" style="font-size:20px;border-radius:30px 30px 30px 30px;padding:5%;" class="button button-block btn-solid effect-scale icon-left ion-wrench">설정</button>
        <!-- <button ui-sref="delegation()" style="font-size:16px;border-radius:20px 20px 20px 20px;" class="button button-block btn-solid effect-scale icon-left ion-wrench">관리자위임</button> -->
