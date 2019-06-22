@@ -1,13 +1,21 @@
-<ion-view title="groupmanage" id="page11">
-  <ion-nav-buttons side="right" class="has-header">
-    <button class="button icon ion-android-add-circle"></button>
-  </ion-nav-buttons>
-  <ion-content padding="false" class="has-header">
-    <div id="groupmanage-container10">
-      <ion-list id="groupmanage-list13">
-        <ion-item class="item-icon-left" id="groupmanage-list-item10" ui-sref="groupsoldierlist()">
-          <i class="icon ion-ios-people"></i>그룹1</ion-item>
-      </ion-list>
-    </div>
+<ion-view title="groupsetting">
+  <ion-content padding="true" class="has-header">
+    <ion-list id="setting-list9">
+      <ion-item class="item-divider" id="setting-list-item-divider4"> 그룹관리</ion-item>
+      <ion-item class="item-avatar" id="setting-list-item12">
+        <h2>사용자이름</h2>
+        <p>부연설명</p>
+      </ion-item>
+      <ion-item class="item-divider" id="setting-list-item-divider5"> 사용금지시간 설정</ion-item>
+      <label class="item item-input" id="setting-input16">
+        <span class="input-label">시작시각</span>
+        <input type="time" placeholder="">
+      </label>
+      <label class="item item-input" id="setting-input17">
+        <span class="input-label">종료시각</span>
+        <input type="time" placeholder="">
+      </label>
+    </ion-list>
+    <button ui-sref="firstpage()" id="setting-button9" class="button button-positive button-small button-block button-clear">로그아웃</button>
   </ion-content>
 </ion-view>

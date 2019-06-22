@@ -4,10 +4,12 @@ angular.module('app.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,$state) {
-    console.log(localStorage.firststate);
-    if(localStorage.firststate==true){
-        $state.go('firstpage',{},{reload:'firstpage'});
-    }
+    console.log("skipStatus : "+localStorage.firststate);
+    $scope.skip=function(){
+        if(localStorage.firststate==true){
+            $state.go('firstpage',{},{reload:'firstpage'});
+        }
+    };
 }])
    
 .controller('loginCtrl', ['$scope', '$stateParams', '$state', '$http','$q', 'AccountService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -30,6 +32,14 @@ function ($scope, $stateParams, $state, $http, $q, AccountService) {
             if(response.result=="LOGIN_SUCCESS"){
                 AccountService.setAccount($scope.user.userId);
                 sessionStorage.id=$scope.user.userId;
+                $http.put("http://221.155.56.120:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
+                    headers : { 
+                        'Content-type': 'application/json' 
+                    }}).then(function(res) {
+                    let response=res.data;
+                    console.log(response.result);
+                    sessionStorage.groupname=response.result;
+                });
                 $state.go('main',{},{reload:'main'});
             }
             else{
@@ -107,7 +117,7 @@ function ($scope, $stateParams,AccountService,$state) {
         $state.go('login',{},{reload: 'login'});
     }
     $scope.golist=function(){
-        $state.go('soldierlist',{},{reload: 'soldierlist'});
+        $state.go('soldierlist',{},{reload:'soldierlist'});
     }
     $scope.gogroup=function(){
         $state.go('groupsoldierlist',{},{reload: 'groupsoldierlist'});
@@ -121,6 +131,8 @@ function ($scope, $stateParams,AccountService,$state) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, SoldierService, $http, AccountService, $state) {
+    $scope.group=sessionStorage.groupname;
+    console.log("이름:"+sessionStorage.groupname);
     $scope.data = {
         showDelete: false
     };
@@ -136,28 +148,17 @@ function ($scope, $stateParams, SoldierService, $http, AccountService, $state) {
         }
     };
 
-    $scope.soldiers=[];
-    var i = 0;
+    $scope.clickSoldier = function(soldier) {
+        // console.log(this.)
+    };
+
     SoldierService.getSoldiers().then(function(res){
         $scope.soldiers=res;
     });
 
-    $http.put("http://221.155.56.120:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
-        headers : { 
-            'Content-type': 'application/json' 
-        }}).then(function(res) {
-        let response=res.data;
-        // console.log(response.result);
-        $scope.group=response.result;
-    });
-
     $scope.doRefresh = function() {
-        $http.put("http://221.155.56.120:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
-            headers : { 
-                'Content-type': 'application/json' 
-            }}).then(function(res) {
-            let response=res.data;
-            $scope.group=response.result;
+        SoldierService.getSoldiers().then(function(res){
+            $scope.soldiers=res;
         });
         $scope.$broadcast('scroll.refreshComplete');
     };
@@ -228,7 +229,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $state) {
-    localStorage.setItem('firststate', false);
-
+    localStorage.setItem('firststate', true);
+    console.log("skipStatus : "+localStorage.firststate);
 }])
  
