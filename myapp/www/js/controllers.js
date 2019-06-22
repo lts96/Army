@@ -23,7 +23,7 @@ function ($scope, $stateParams, $state, $http, $q, AccountService) {
             userId:$scope.user.userId,
             password:$scope.user.password
         };
-        let url="http://localhost:8080/main/log_in";
+        let url="http://221.155.56.120:8080/main/log_in";
         $http.put(url, body, {headers : { 'Content-type': 'application/json' }}).then(function(res) {
             console.log("res:"+JSON.stringify(res));
             let response=res.data;
@@ -54,32 +54,37 @@ function ($scope, $stateParams, $state, $http, $q) {
         // console.log($scope.usersign.groupName);
         // console.log($scope.usersign.phoneNumber);
         if($scope.usersign.password==$scope.usersign.pwconfig){
-            let body={
-                userId:$scope.usersign.userId,
-                password:$scope.usersign.password,
-                phoneNumber:$scope.usersign.phoneNumber,
-                name:$scope.usersign.name,
-                groupName:$scope.usersign.groupName,
-                lastUpdate:"0",
-                camera:"0", 
-                nable:"0", 
-                screen:"0",
-                roleName:"ADMIN",
-                imei:"0",
-            };
-            let url="http://localhost:8080/main/sign_in";
-            $http.post(url, body, {headers : { 'Content-type': 'application/json' }}).then(function(res) {
-                console.log("res:"+JSON.stringify(res));
-                let response=res.data;
-                if(response.result=="REGISTER_OK"){
-                alert("회원가입이 정상적으로 완료되었습니다.");
-                $state.go('login');
-                }
-                else{
-                alert("아이디가 이미 존재합니다.");
-                // location.reload();
-                }
-            });
+            if($scope.usersign.userId&&$scope.usersign.password&&$scope.usersign.phoneNumber&&$scope.usersign.name&&$scope.usersign.groupName){
+                let body={
+                    userId:$scope.usersign.userId,
+                    password:$scope.usersign.password,
+                    phoneNumber:$scope.usersign.phoneNumber,
+                    name:$scope.usersign.name,
+                    groupName:$scope.usersign.groupName,
+                    lastUpdate:"0",
+                    camera:"0", 
+                    nable:"0", 
+                    screen:"0",
+                    roleName:"ADMIN",
+                    imei:"0",
+                };
+                let url="http://221.155.56.120:8080/main/sign_in";
+                $http.post(url, body, {headers : { 'Content-type': 'application/json' }}).then(function(res) {
+                    console.log("res:"+JSON.stringify(res));
+                    let response=res.data;
+                    if(response.result=="REGISTER_OK"){
+                    alert("회원가입이 정상적으로 완료되었습니다.");
+                    $state.go('login');
+                    }
+                    else{
+                    alert("아이디가 이미 존재합니다.");
+                    // location.reload();
+                    }
+                });
+            }
+            else{
+                alert("양식을 모두 채워주세요.");
+            }
         }
         else{
             alert("비밀번호를 다시 확인하세요.");
@@ -115,7 +120,6 @@ function ($scope, $stateParams, SoldierService, $http, AccountService) {
             this.refresh();
             alert("사용자를 삭제하였습니다.");
         }
-        
     };
 
     $scope.soldiers=[];
@@ -124,7 +128,7 @@ function ($scope, $stateParams, SoldierService, $http, AccountService) {
         $scope.soldiers=res;
     });
 
-    $http.put("http://localhost:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
+    $http.put("http://221.155.56.120:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
         headers : { 
             'Content-type': 'application/json' 
         }}).then(function(res) {
@@ -134,12 +138,11 @@ function ($scope, $stateParams, SoldierService, $http, AccountService) {
     });
 
     $scope.doRefresh = function() {
-        $http.put("http://localhost:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
+        $http.put("http://221.155.56.120:8080/main/userlist/userGroup", {'userId':sessionStorage.id}, {
             headers : { 
                 'Content-type': 'application/json' 
             }}).then(function(res) {
             let response=res.data;
-            // console.log(response.result);
             $scope.group=response.result;
         });
         $scope.$broadcast('scroll.refreshComplete');

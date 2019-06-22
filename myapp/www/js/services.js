@@ -26,10 +26,11 @@ angular.module('app.services', [])
         getSoldiers:function() {
             var deferred = $q.defer();
                     
-            $http.put("http://localhost:8080/main/userlist/userSoldier",{'userId':sessionStorage.id}).then(function(res) {
+            $http.put("http://221.155.56.120:8080/main/userlist/userSoldier",{'userId':sessionStorage.id}).then(function(res) {
                 var soldiers=res.data.map(function(soldier){
                     // soldier.id=soldier.url;
-                    console.dir(soldier);
+                    console.dir("soldier="+JSON.stringify(soldier));
+                    // sessionStorage.currentsoldier=soldier;
                     return soldier;
                 });
                 deferred.resolve(soldiers);
@@ -41,7 +42,7 @@ angular.module('app.services', [])
             var deferred=$q.defer();
 
             $http.get(url).then(function(res){
-                console.dir(res.data);
+                console.dir("res.data="+JSON.stringify(res.data));
                 deferred.resolve(res.data);
             });
             return deferred.promise;
