@@ -32,8 +32,11 @@ import android.app.admin.DeviceAdminReceiver
 import android.content.*
 
 
-class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callSelectListener,
-    SignFrag.callSignListener,PinFrag.callPinListener {
+class Login : AppCompatActivity(),
+    LoginFrag.callLoginListener,
+    SelectFrag.callSelectListener,
+    SignFrag.callSignListener,
+    PinFrag.callPinListener{
 
     lateinit var pref:SharedPreferences
     lateinit var editor:SharedPreferences.Editor
@@ -83,7 +86,7 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
         if(PrefApp.prefs.myPrefId.length!=0){ //뭔가 값이 있다면?
             var id=PrefApp.prefs.myPrefId
             var pw=PrefApp.prefs.myPrefPw
-            Log.d("hsh","시발 아이디는 $id, 비밀번호는 $pw 길이${id.length} ")
+            Log.d("hsh"," 아이디는 $id, 비밀번호는 $pw 길이${id.length} ")
             val disposable = CompositeDisposable()
             disposable.add(
                 ApiService.create().login(
@@ -99,11 +102,18 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
                         if (it.result.toString() == "LOGIN_SUCCESS") {
                             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                             Option.user_id = PrefApp.prefs.myPrefId
+                            Option.groupPin=it.pin
+                            if(Option.groupPin==-1){
+                                //핀 프래그먼트 띄우기.
+                                makePin()
+                            }else{
+                                var intent = Intent(applicationContext, MainService::class.java) // 메인서비스를 라고 명시한 intent 선언
+                                intent.putExtra("key", "value")
+                                startService(intent) //메인서비스 실행
+                                this!!.finish()
+                            }
                             //startActivity(Intent(this, MainActivity::class.java))
-                            var intent = Intent(applicationContext, MainService::class.java) // 메인서비스를 라고 명시한 intent 선언
-                            intent.putExtra("key", "value")
-                            startService(intent) //메인서비스 실행
-                            this!!.finish()
+
                         } else {
                             Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
                         }
@@ -122,7 +132,6 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
         AdminService.mDevicePolicyAdmin = ComponentName(applicationContext, AdminReceiver::class.java)
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, AdminService.mDevicePolicyAdmin)
         startActivityForResult(intent, 1)
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -159,7 +168,7 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
         var transaction=supportFragmentManager.beginTransaction()
         var pinFrag=PinFrag.newInstance()
         transaction.replace(com.example.strongfriends.R.id.frame,pinFrag,"pinFrag")
-        var coommit=transaction.commit()
+        var commit=transaction.commit()
     }
 
     fun makeSign() {

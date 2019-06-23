@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.IBinder
+import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.util.Log
 import com.example.strongfriends.Application.Notification.NotificationFactory
 import com.example.strongfriends.Application.Services.Option
@@ -17,7 +18,6 @@ class AdminService: Service() {
     override fun onBind(intent: Intent?): IBinder? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 
     companion object{
         var isCamera=0
@@ -44,11 +44,11 @@ class AdminService: Service() {
         //intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDevicePolicyAdmin)
 //        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDevicePolicyAdmin)
         //(this as AdminActivity).startActivityForResult(intent, 0)
-//        if(Option.camera==1) {
+        if(Option.camera==1) {
             mDevicePolicyManager.setCameraDisabled(mDevicePolicyAdmin, true)
-/*        }else{
+        }else{
             mDevicePolicyManager.setCameraDisabled(mDevicePolicyAdmin, false)
-        }*/
+        }
         adminReceivere=AdminReceiver()
         var filter = IntentFilter(DeviceAdminReceiver.ACTION_DEVICE_ADMIN_DISABLE_REQUESTED)
         filter.addAction(DeviceAdminReceiver.EXTRA_DISABLE_WARNING)
@@ -56,15 +56,19 @@ class AdminService: Service() {
         filter.addAction(DeviceAdminReceiver.ACTION_DEVICE_ADMIN_DISABLED)
         registerReceiver(adminReceivere,filter)
         isAdmin=1
-
         //mDevicePolicyManager.
         //이곳을 이런식으로 할 필요가 없다.
-
         //추가하고싶은거잇으면 풋엑스트라로 더 추가.
     }
 
     override fun onDestroy() {
         if(isAdmin==1)unregisterReceiver(adminReceivere)
+        Log.d("hsh","Adminserservice : onDestroy.")
         super.onDestroy()
+    }
+
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        Log.d("hsh","재시작 가능.")
+        super.onTaskRemoved(rootIntent)
     }
 }

@@ -15,10 +15,10 @@
               android:textSize="18sp"
               android:gravity="center"
               android:hint="핀을 입력하세요"
-              android:layout_height="wrap_content"/>
+              android:layout_height="wrap_content" android:id="@+id/pinEdit"/>
     <Button
-            android:text="Button"
+            android:text="입장"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/button2" android:background="#CDDC39"
-            android:textSize="16sp" android:textStyle="bold"/>
+            android:layout_height="wrap_content" android:id="@+id/pinButton" android:background="#EFEFE8"
+            android:textSize="16sp" android:textStyle="bold" android:textColor="#817B7B"/>
 </LinearLayout>

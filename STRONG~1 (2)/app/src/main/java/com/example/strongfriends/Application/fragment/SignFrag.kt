@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.drawable.DrawableCompat.setTint
 import android.telephony.TelephonyManager
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,11 +24,12 @@ import com.example.strongfriends.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFrag : Fragment() {
 
-    lateinit var telephoneManager :TelephonyManager
+    lateinit var telephoneManager: TelephonyManager
     lateinit var imei: String
     lateinit var tel: String
 
@@ -49,13 +51,12 @@ class SignFrag : Fragment() {
     interface callSignListener {
         // TODO: Update argument type and name
         fun signToSelect()
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setListener()
-        telephoneManager= activity!!.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        telephoneManager = activity!!.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         getPhoneState()
     }
 
@@ -69,7 +70,6 @@ class SignFrag : Fragment() {
     }
 
     fun setListener() {
-
         signButton.isEnabled = false
         signId.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -81,20 +81,24 @@ class SignFrag : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length>0){
-                    if(signPw.text.toString().equals(signPwCheck.text.toString())){
+                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length > 0) {
+                    if (signPw.text.toString().equals(signPwCheck.text.toString())) {
                         signPwCheck.setTextColor(Color.BLUE)
-                        signButton.isEnabled=true
-
-                    }else{
+                        signButton.isEnabled = true
+                        signButton.background.setTint(Color.parseColor("#CDDC39"))
+                        signButton.setTextColor(Color.parseColor("#343030"))
+                    } else {
                         signPwCheck.setTextColor(Color.RED)
-                        signButton.isEnabled=false
+                        signButton.isEnabled = false
+                        signButton.setTextColor(Color.parseColor("#817B7B"))
+                        signButton.background.setTint(Color.parseColor("#EFEFE8"))
                     }
+                } else {
+                    signButton.isEnabled = false
+                    signButton.setTextColor(Color.parseColor("#817B7B"))
+                    signButton.background.setTint(Color.parseColor("#EFEFE8"))
                 }
-                else signButton.isEnabled = false
             }
-
         })
 
         signPw.addTextChangedListener(object : TextWatcher {
@@ -107,17 +111,23 @@ class SignFrag : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length>0){
-                    if(signPw.text.toString().equals(signPwCheck.text.toString())){
+                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length > 0) {
+                    if (signPw.text.toString().equals(signPwCheck.text.toString())) {
                         signPwCheck.setTextColor(Color.BLUE)
-                        signButton.isEnabled=true
-
-                    }else{
+                        signButton.isEnabled = true
+                        signButton.background.setTint(Color.parseColor("#CDDC39"))
+                        signButton.setTextColor(Color.parseColor("#343030"))
+                    } else {
                         signPwCheck.setTextColor(Color.RED)
-                        signButton.isEnabled=false
+                        signButton.isEnabled = false
+                        signButton.setTextColor(Color.parseColor("#817B7B"))
+                        signButton.background.setTint(Color.parseColor("#EFEFE8"))
                     }
+                } else {
+                    signButton.isEnabled = false
+                    signButton.setTextColor(Color.parseColor("#817B7B"))
+                    signButton.background.setTint(Color.parseColor("#EFEFE8"))
                 }
-                else signButton.isEnabled = false
             }
 
         })
@@ -132,22 +142,27 @@ class SignFrag : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length>0){
-                    if(signPw.text.toString().equals(signPwCheck.text.toString())){
+                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length > 0) {
+                    if (signPw.text.toString().equals(signPwCheck.text.toString())) {
                         signPwCheck.setTextColor(Color.BLUE)
-                        signButton.isEnabled=true
-
-                    }else{
+                        signButton.isEnabled = true
+                        signButton.background.setTint(Color.parseColor("#CDDC39"))
+                        signButton.setTextColor(Color.parseColor("#343030"))
+                    } else {
                         signPwCheck.setTextColor(Color.RED)
-                        signButton.isEnabled=false
+                        signButton.isEnabled = false
+                        signButton.setTextColor(Color.parseColor("#817B7B"))
+                        signButton.background.setTint(Color.parseColor("#EFEFE8"))
                     }
+                } else {
+                    signButton.isEnabled = false
+                    signButton.setTextColor(Color.parseColor("#817B7B"))
+                    signButton.background.setTint(Color.parseColor("#EFEFE8"))
                 }
-                else signButton.isEnabled = false
             }
-
         })
 
-        signPwCheck.addTextChangedListener(object:TextWatcher{
+        signPwCheck.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -157,19 +172,24 @@ class SignFrag : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length>0){
-                    if(signPw.text.toString().equals(signPwCheck.text.toString())){
+                if (signPw.text.length > 0 && signName.text.length > 0 && signId.text.length > 0 && signPwCheck.text.length > 0) {
+                    if (signPw.text.toString().equals(signPwCheck.text.toString())) {
                         signPwCheck.setTextColor(Color.BLUE)
-                        signButton.isEnabled=true
-
-                    }else{
+                        signButton.isEnabled = true
+                        signButton.background.setTint(Color.parseColor("#CDDC39"))
+                        signButton.setTextColor(Color.parseColor("#343030"))
+                    } else {
                         signPwCheck.setTextColor(Color.RED)
-                        signButton.isEnabled=false
+                        signButton.isEnabled = false
+                        signButton.setTextColor(Color.parseColor("#817B7B"))
+                        signButton.background.setTint(Color.parseColor("#EFEFE8"))
                     }
+                } else {
+                    signButton.isEnabled = false
+                    signButton.setTextColor(Color.parseColor("#817B7B"))
+                    signButton.background.setTint(Color.parseColor("#EFEFE8"))
                 }
-                else signButton.isEnabled = false
             }
-
         })
 
         signButton.setOnClickListener {
@@ -179,11 +199,17 @@ class SignFrag : Fragment() {
                     register_body(
                         signId.text.toString(),
                         signPw.text.toString(),
-                        imei,
                         tel,
-                        "뷁",
+                        signName.text.toString(),
+                        "병장",
+                        "없음",
+                        "00000000000000",
+                        0,
+                        0,
+                        0,
+                        -1,
                         "USER",
-                        signName.text.toString()
+                        imei
                     )
                 )
                     .observeOn(AndroidSchedulers.mainThread())
@@ -191,13 +217,13 @@ class SignFrag : Fragment() {
                     .subscribe({ it ->
                         Log.d("hsh", "LOGIN.activity: 회원가입 요청에 대한 반환. : $it")
                         if (it.toString() == "REGISTER_OK") Toast.makeText(activity, "회원가입 성공", Toast.LENGTH_SHORT)
-                        PrefApp.prefs.myPrefId=signId.text.toString()
-                        PrefApp.prefs.myPrefPw=signPw.text.toString()
+                        PrefApp.prefs.myPrefId = signId.text.toString()
+                        PrefApp.prefs.myPrefPw = signPw.text.toString()
                         //여기에서 만약 옵션도 같이 왔다면, 현재 바인드 서비스가 되어있는 CottrolService 에게 알림을 보낸다.
                         (activity as SignFrag.callSignListener).signToSelect()
                     }) {
                         Log.d("LOG", "Error, ${it.message}")
-                        Toast.makeText(activity,"회원가입 실패 다시 입력해주세요",Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "회원가입 실패 다시 입력해주세요", Toast.LENGTH_LONG).show()
                     })
         }
         signToSelect.setOnClickListener {

@@ -6,80 +6,244 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Application.Activity.CurrentState">
+        tools:context=".Application.Activity.CurrentState" android:gravity="center" android:paddingHorizontal="45dp">
+    <ImageView android:layout_width="match_parent"
+               android:src="@drawable/title"
+               android:layout_height="139dp"/>
 
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_marginBottom="8dp"
+                  android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                        android:layout_marginRight="6dp"
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="아이디"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="bbhhss03"
+                    android:id="@+id/currStateId"
+                    android:layout_height="0dp"/>
+
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:orientation="vertical"
+                      android:layout_marginLeft="6dp"
+                      android:layout_height="wrap_content">
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="이름"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="한상훈"
+                    android:id="@+id/currStateName"
+                    android:layout_height="0dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_marginBottom="8dp"
+                  android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_marginRight="6dp"
+
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="그룹"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="상훈사단"
+                    android:id="@+id/currStateGroup"
+                    android:layout_height="0dp"/>
+
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:orientation="vertical"
+                      android:layout_marginLeft="6dp"
+                      android:layout_height="wrap_content">
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="PIN"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="123456"
+                    android:id="@+id/currStatePin"
+                    android:layout_height="0dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="horizontal"
+                  android:layout_marginBottom="8dp"
                   android:layout_height="wrap_content">
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="3"
-                  android:text="이름 : "
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="7"
-                  android:id="@+id/currStateName"
-                  android:layout_height="match_parent"/>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_marginRight="6dp"
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="전체 제어"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="제어중"
+                    android:id="@+id/currStateTotal"
+                    android:layout_height="0dp"/>
+
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:orientation="vertical"
+                      android:layout_marginLeft="6dp"
+                      android:layout_height="wrap_content">
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="카메라 제어"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="제어중"
+                    android:id="@+id/currStateCamera"
+                    android:layout_height="0dp"/>
+        </LinearLayout>
+
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="horizontal"
                   android:layout_height="wrap_content">
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="3"
-                  android:text="핸드폰 번호 : "
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="7"
-                  android:id="@+id/currStateTel"
-                  android:layout_height="match_parent"/>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_marginRight="6dp"
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="스크린 제어"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="제어중"
+                    android:id="@+id/currStateScreen"
+                    android:layout_height="0dp"/>
+
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:orientation="vertical"
+                      android:layout_marginLeft="6dp"
+                      android:layout_height="wrap_content">
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="GPS제어"
+
+                    android:layout_marginBottom="-1dp"
+                    android:layout_height="0dp"
+
+                    android:background="@drawable/button_shape"
+                    android:padding="0dp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+            <Button android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/button_shape_down"
+                    android:text="미제어"
+                    android:id="@+id/currStateGps"
+                    android:layout_height="0dp"/>
+        </LinearLayout>
+
     </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:layout_height="wrap_content">
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="3"
-                  android:text="전체 제어 : "
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="7"
-                  android:id="@+id/currStateIsTotal"
-                  android:layout_height="match_parent"/>
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:layout_height="wrap_content">
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="3"
-                  android:text="카메라 제어 : "
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="7"
-                  android:id="@+id/currStateIsCamera"
-                  android:layout_height="match_parent"/>
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:layout_height="wrap_content">
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="3"
-                  android:text="스크린 잠금 : "
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="7"
-                  android:id="@+id/currStateIsScreen"
-                  android:layout_height="match_parent"/>
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:layout_height="wrap_content">
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="3"
-                  android:text="GPS 제어 : "
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="7"
-                  android:id="@+id/currStateIsGps"
-                  android:layout_height="match_parent"/>
-    </LinearLayout>
+
 
 </LinearLayout>

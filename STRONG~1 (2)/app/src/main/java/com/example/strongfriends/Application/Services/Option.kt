@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter
 
 object Option { //옵션 컨피규레이션....?
     var user_id:String=""
+    var groupPin:Int=-1
     var enable : Int = 1  //설정을 적용하는지?
     var camera : Int = 0//카메라가 차단인지?
     var screen:  Int = 1 //스크린이 차단인지?

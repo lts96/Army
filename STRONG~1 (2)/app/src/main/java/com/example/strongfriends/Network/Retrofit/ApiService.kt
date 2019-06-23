@@ -63,10 +63,28 @@ interface ApiService {
 
     @FormUrlEncoded
     @PUT("main/groupId/violoation")
-    fun violation(
+    fun violation2(
         @Field("userId") userId:String,
         @Field("groupId")groupId:String,
         @Field("violationId") violationId:String
     )
+
+    @GET("main/loglist")
+    fun violation(
+        //@Path("userId")userName2:String,
+        @Query("userName")userName:String,
+        @Query("occurTime")time:String,
+        @Query("groupPin") groupPin:String,
+        @Query("violation") violationCode:Int
+
+    ):Observable<String>
+
+    @GET("main/gotoRoom/{userId}/{groupPin}")
+    fun gotoRoom(
+        @Path("userId")userId:String,
+        @Path("groupPin")groupPin:Int
+    ):Observable<gotoRoom_response>
+
+
 
 }

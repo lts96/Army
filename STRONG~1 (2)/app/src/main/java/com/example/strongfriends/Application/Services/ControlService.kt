@@ -112,9 +112,7 @@ class ControlService : Service() {
                 setLock()
             }
                 setCamera()
-
              //락에대한 거 세팅.
-
         }
 
         //Log.d("hsh","ControlService : OnBind")
@@ -133,7 +131,7 @@ class ControlService : Service() {
 
 
     fun setLock(){
-        var now=LocalDateTime.now().plusHours(13)
+        var now=LocalDateTime.now().plusHours(9)
         var end=Option.getFormattedTime()[1]
         var start=Option.getFormattedTime()[0]
         Log.d("hsh","시작시간 : $start, 끝시간 $end, 현재시간 $now")

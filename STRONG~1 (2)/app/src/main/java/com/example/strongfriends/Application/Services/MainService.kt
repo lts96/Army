@@ -189,8 +189,9 @@ class MainService : Service() {
         }
     }
 
-    fun setBootReceiver() {
-
+    override fun onDestroy() {
+        Log.d("hsh","MainService: onDestroy 종료 시도가 감지 되었습니다. ")
+        super.onDestroy()
     }
 
 

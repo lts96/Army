@@ -1,3 +1,3 @@
 package com.example.strongfriends.Application.Activity.Datas
 
-data class Result (var result:String, var pin:Int)
+data class gotoRoom_response(var msg:String, var pin:Int)
