@@ -16,9 +16,11 @@ import com.example.strongfriends.Application.Activity.Datas.login_body
 import com.example.strongfriends.Application.Activity.Datas.register_body
 import com.example.strongfriends.Application.Controller.Admin.AdminReceiver
 import com.example.strongfriends.Application.Controller.Admin.AdminService
+import com.example.strongfriends.Application.Services.MainService
 import com.example.strongfriends.Application.Services.Option
 import com.example.strongfriends.Application.SharedPreferences.PrefApp
 import com.example.strongfriends.Application.fragment.LoginFrag
+import com.example.strongfriends.Application.fragment.PinFrag
 import com.example.strongfriends.Application.fragment.SelectFrag
 import com.example.strongfriends.Application.fragment.SignFrag
 import com.example.strongfriends.Network.Retrofit.ApiService
@@ -30,17 +32,17 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callSelectListener,
-    SignFrag.callSignListener {
+    SignFrag.callSignListener,PinFrag.callPinListener {
+
     lateinit var pref:SharedPreferences
     lateinit var editor:SharedPreferences.Editor
 
     var permissionArray = arrayOf(
-        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        /*android.Manifest.permission.READ_EXTERNAL_STORAGE,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
         android.Manifest.permission.READ_PHONE_NUMBERS,
-        android.Manifest.permission.READ_PHONE_STATE
-       // android.Manifest.permission.RECEIVE_BOOT_COMPLETED,
-      //  android.Manifest.permission.FOREGROUND_SERVICE
+        android.Manifest.permission.READ_PHONE_STATE,*/
+        android.Manifest.permission.RECEIVE_BOOT_COMPLETED
 
     )
     var REQUEST_PERMISSION = 10
@@ -51,8 +53,6 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
         setSharedPref() //셰어드 프리퍼런스 셋
         initPermission() //권한들 다 받아온다.
         makeSelect()
-
-
 /*
         registerButton.setOnClickListener {
             val disposable= CompositeDisposable()
@@ -93,7 +93,10 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
                         if (it.result.toString() == "LOGIN_SUCCESS") {
                             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                             Option.user_id = PrefApp.prefs.myPrefId
-                            startActivity(Intent(this, MainActivity::class.java))
+                            //startActivity(Intent(this, MainActivity::class.java))
+                            var intent = Intent(applicationContext, MainService::class.java) // 메인서비스를 라고 명시한 intent 선언
+                            intent.putExtra("key", "value")
+                            startService(intent) //메인서비스 실행
                             this!!.finish()
                         } else {
                             Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
@@ -129,6 +132,17 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
 
     override fun signToSelect() {
         makeSelect()
+    }
+
+    override fun changeToPin() {
+        makePin()
+    }
+
+    fun makePin(){
+        var transaction=supportFragmentManager.beginTransaction()
+        var pinFrag=PinFrag.newInstance()
+        transaction.replace(R.id.frame,pinFrag,"pinFrag")
+        var coommit=transaction.commit()
     }
 
     fun makeSign() {

@@ -10,7 +10,7 @@ import com.example.strongfriends.Application.Services.MainService
 
 class LockBroadcastReceiver():BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        if ("android.intent.action.BOOT_COMPLETED".equals(intent!!.action)) {
+        if ("android.permission.RECEIVE_BOOT_COMPLETED".equals(intent!!.action)) {
             var intent = Intent(context, MainService::class.java)
             var pending = PendingIntent.getService(context, 0, intent, 0)
             pending.send()
@@ -30,7 +30,6 @@ class LockBroadcastReceiver():BroadcastReceiver() {
              pending.send()*/
         } else if (intent.action.equals(Intent.ACTION_SCREEN_OFF)) {
             Log.d("hsh", "BroadCastReceiver : 스크린 오프")
-
         }
     }
 }

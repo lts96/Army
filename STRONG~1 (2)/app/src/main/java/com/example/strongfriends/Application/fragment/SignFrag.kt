@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.strongfriends.Application.Activity.Datas.register_body
+import com.example.strongfriends.Application.SharedPreferences.PrefApp
 import com.example.strongfriends.Network.Retrofit.ApiService
 
 import com.example.strongfriends.R
@@ -190,10 +191,13 @@ class SignFrag : Fragment() {
                     .subscribe({ it ->
                         Log.d("hsh", "LOGIN.activity: 회원가입 요청에 대한 반환. : $it")
                         if (it.toString() == "REGISTER_OK") Toast.makeText(activity, "회원가입 성공", Toast.LENGTH_SHORT)
+                        PrefApp.prefs.myPrefId=signId.text.toString()
+                        PrefApp.prefs.myPrefPw=signPw.text.toString()
                         //여기에서 만약 옵션도 같이 왔다면, 현재 바인드 서비스가 되어있는 CottrolService 에게 알림을 보낸다.
                         (activity as SignFrag.callSignListener).signToSelect()
                     }) {
                         Log.d("LOG", "Error, ${it.message}")
+                        Toast.makeText(activity,"회원가입 실패 다시 입력해주세요",Toast.LENGTH_LONG).show()
                     })
         }
 

@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.strongfriends.Application.Activity.Datas.login_body
 import com.example.strongfriends.Application.Activity.MainActivity
+import com.example.strongfriends.Application.Services.MainService
 import com.example.strongfriends.Application.Services.Option
 import com.example.strongfriends.Application.SharedPreferences.PrefApp
 import com.example.strongfriends.Network.Retrofit.ApiService
@@ -118,7 +119,10 @@ class LoginFrag : Fragment() {
                             PrefApp.prefs.myPrefId=loginId.text.toString()
                             PrefApp.prefs.myPrefPw=loginPw.text.toString()
                             Option.user_id = PrefApp.prefs.myPrefId
-                            startActivity(Intent(activity, MainActivity::class.java))
+                            //startActivity(Intent(this, MainActivity::class.java))
+                            var intent = Intent(activity, MainService::class.java) // 메인서비스를 라고 명시한 intent 선언
+                            intent.putExtra("key", "value")
+                            activity!!.startService(intent) //메인서비스 실행11
                             activity!!.finish()
                         } else {
                             Toast.makeText(activity, "로그인 실패", Toast.LENGTH_SHORT).show()

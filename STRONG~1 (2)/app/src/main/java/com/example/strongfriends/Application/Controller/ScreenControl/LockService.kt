@@ -64,6 +64,9 @@ class LockService: Service() {
 
                 }
             }
+            else if(intent.extras["value"].equals("start")){
+
+            }
         }
         return START_STICKY
     }

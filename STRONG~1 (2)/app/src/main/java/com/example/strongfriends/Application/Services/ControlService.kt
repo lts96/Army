@@ -131,7 +131,7 @@ class ControlService : Service() {
     }
 
     fun setLock(){
-        var now=LocalDateTime.now().plusHours(9)
+        var now=LocalDateTime.now().plusHours(13)
         var end=Option.getFormattedTime()[1]
         var start=Option.getFormattedTime()[0]
         Log.d("hsh","시작시간 : $start, 끝시간 $end, 현재시간 $now")
@@ -141,6 +141,9 @@ class ControlService : Service() {
                 isAlarmSet=1
                 Log.d("hsh","ControlService: 스크린 Lock 기간 입니다. 알람이 세팅이 되어있지 않습니다 알람set하겠습니다. ")
             }else{
+                var intent=Intent(applicationContext, LockService::class.java)
+                intent.putExtra("value","start")
+                applicationContext.startService(intent)
                 Log.d("hsh","ControlService: 알람이 세팅되어 있지 않지만, 스크린 Lock Time 도 아닙니다. 세팅X")
             }
 

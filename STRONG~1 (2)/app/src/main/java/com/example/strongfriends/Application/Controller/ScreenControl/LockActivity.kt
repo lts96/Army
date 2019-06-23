@@ -42,7 +42,7 @@ class LockActivity : AppCompatActivity(){
         setContentView(R.layout.activity_lock)
         if(LockService.isBroad==1) {
             button.text = "해제불가"
-            button.isEnabled = false
+            button.isEnabled = true
         }
         else{
             button.text="눌러서해제" //여기서 말고 이 내용을 브로드 캐스트 리시버 하나 등록해놓고 받아서 해볼까?
