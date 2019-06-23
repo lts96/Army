@@ -1,9 +1,6 @@
 package com.example.strongfriends.Application.Activity
 
 import android.app.admin.DevicePolicyManager
-import android.content.ComponentName
-import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -30,6 +27,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_login.*
+import android.app.Activity
+import android.app.admin.DeviceAdminReceiver
+import android.content.*
+
 
 class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callSelectListener,
     SignFrag.callSignListener,PinFrag.callPinListener {
@@ -38,17 +39,22 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
     lateinit var editor:SharedPreferences.Editor
 
     var permissionArray = arrayOf(
-        /*android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        android.Manifest.permission.READ_EXTERNAL_STORAGE,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
         android.Manifest.permission.READ_PHONE_NUMBERS,
-        android.Manifest.permission.READ_PHONE_STATE,*/
+        android.Manifest.permission.READ_PHONE_STATE,
         android.Manifest.permission.RECEIVE_BOOT_COMPLETED
 
     )
     var REQUEST_PERMISSION = 10
+
+    companion object {
+        lateinit var broad:AdminReceiver
+        var isBroad=0
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(com.example.strongfriends.R.layout.activity_login)
         setAdmin() //어드민 권한을 받아온다.
         setSharedPref() //셰어드 프리퍼런스 셋
         initPermission() //권한들 다 받아온다.
@@ -112,9 +118,20 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
 
     fun setAdmin() {
         var intent = Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN)
+        AdminService.mDevicePolicyManager =getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
         AdminService.mDevicePolicyAdmin = ComponentName(applicationContext, AdminReceiver::class.java)
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, AdminService.mDevicePolicyAdmin)
         startActivityForResult(intent, 1)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+        Log.d("hsh","Login:onAcitivtyResult OK")
+        }else{
+            Log.d("hsh","${resultCode.toString()}")
+        }
     }
 
     //프래그먼트 관련
@@ -141,7 +158,7 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
     fun makePin(){
         var transaction=supportFragmentManager.beginTransaction()
         var pinFrag=PinFrag.newInstance()
-        transaction.replace(R.id.frame,pinFrag,"pinFrag")
+        transaction.replace(com.example.strongfriends.R.id.frame,pinFrag,"pinFrag")
         var coommit=transaction.commit()
     }
 
@@ -149,7 +166,7 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
         var fragment=supportFragmentManager.findFragmentByTag("signFrag")
         var transaction = supportFragmentManager.beginTransaction()
         var signFrag = SignFrag.newInstance()
-        transaction.replace(R.id.frame, signFrag, "signFrag")
+        transaction.replace(com.example.strongfriends.R.id.frame, signFrag, "signFrag")
         var commit = transaction.commit()
     }
 
@@ -158,25 +175,25 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
         if (fragment == null) { //프래그먼트가 뭔가 부착되어있는데 나는 아님.
             var transaction = supportFragmentManager.beginTransaction()
             var loginFrag = LoginFrag.newInstance()
-            transaction.replace(R.id.frame, loginFrag, "loginFrag")
+            transaction.replace(com.example.strongfriends.R.id.frame, loginFrag, "loginFrag")
             var commit = transaction.commit()
         }
     }
 
     fun makeSelect() {
-        var fragment = supportFragmentManager.findFragmentById(R.id.frame)
+        var fragment = supportFragmentManager.findFragmentById(com.example.strongfriends.R.id.frame)
         if (fragment == null) { //아직 아무것도 없으면,
             fragment = SelectFrag()
             var transaction = supportFragmentManager.beginTransaction()
             var selectFrag = SelectFrag.newInstance()
-            transaction.replace(R.id.frame, selectFrag, "selectFrag")
+            transaction.replace(com.example.strongfriends.R.id.frame, selectFrag, "selectFrag")
             var commit = transaction.commit()
         } else {
             val fragment = supportFragmentManager.findFragmentByTag("selectFrag")
             if (fragment == null) { //프래그먼트가 뭔가 부착되어있는데 나는 아님.
                 var transaction = supportFragmentManager.beginTransaction()
                 var selectFrag = SelectFrag.newInstance()
-                transaction.replace(R.id.frame, selectFrag, "selectFrag")
+                transaction.replace(com.example.strongfriends.R.id.frame, selectFrag, "selectFrag")
                 var commit = transaction.commit()
             } else {
                 //(fragment as ListFrag).setRecyclerView( ) //나면 아무것도안하지.
@@ -195,7 +212,7 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
             val builder = AlertDialog.Builder(this)
             builder.setMessage("반드시 권한이 허용되어야 합니다")
                 .setTitle("권한 허용")
-                .setIcon(R.drawable.abc_ic_star_black_48dp)
+                .setIcon(com.example.strongfriends.R.drawable.abc_ic_star_black_48dp)
             builder.setPositiveButton("OK") { _, _ ->
                 askPermission(permissionArray, REQUEST_PERMISSION);
             }
@@ -241,4 +258,6 @@ class Login : AppCompatActivity(), LoginFrag.callLoginListener, SelectFrag.callS
             }
         }
     } // onRequestPermissionsResult
+
+
 }

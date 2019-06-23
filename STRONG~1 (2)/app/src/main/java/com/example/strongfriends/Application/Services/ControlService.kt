@@ -111,9 +111,8 @@ class ControlService : Service() {
             if(isLockControl==1){
                 setLock()
             }
-            if(isCameraControl==1){
                 setCamera()
-            }
+
              //락에대한 거 세팅.
 
         }
@@ -127,8 +126,11 @@ class ControlService : Service() {
 
 
     fun setCamera(){
-        startService(Intent(applicationContext, AdminService::class.java))
+        var intent=Intent(applicationContext,AdminService::class.java)
+        intent.putExtra("camera",1)
+        startService(intent)
     }
+
 
     fun setLock(){
         var now=LocalDateTime.now().plusHours(13)

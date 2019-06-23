@@ -31,9 +31,6 @@ import com.example.strongfriends.Application.Controller.ScreenControl.LockActivi
 
 
 class MainService : Service() {
-    interface UnLocking {
-        fun unLocking()
-    }
 
     var connection: ServiceConnection? = null //binding할 controlService와의 커넥션
     var messenger: Messenger? = null //바인더가 감싸고있는 메신저 객체 여기다 보내면 .controlService의 핸들러가 받는다.
@@ -72,6 +69,7 @@ class MainService : Service() {
         filter.addAction("com.example.strongfriends.lock.on")
         filter.addAction("com.example.strongfriends.lock.off")
         this.registerReceiver(broad, filter)
+
 
         Log.d("hsh", "MainService : OnCreate 서비스가 생성될 떄 단 한번만 실행 된다고 한다!")
     }

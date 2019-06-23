@@ -5,17 +5,26 @@
               android:layout_height="match_parent"
               android:gravity="center"
               android:orientation="vertical"
-              tools:context=".Application.fragment.SelectFrag">
+              tools:context=".Application.fragment.SelectFrag" android:paddingHorizontal="20dp">
 
-    <Button android:layout_width="wrap_content"
+    <ImageView android:layout_width="match_parent"
+               android:scaleType="fitCenter"
+               android:src="@drawable/title"
+               android:paddingBottom="180dp"
+               android:layout_height="wrap_content"/>
+
+    <Button android:layout_width="match_parent"
             android:id="@+id/gotoSign"
+            android:height="60dp"
             android:paddingBottom="10dp"
             android:text="회원가입"
-            android:layout_height="wrap_content"/>
-    <Button android:layout_width="wrap_content"
+            android:layout_height="60dp" android:shadowColor="#00844343" android:textColor="#343030"
+            android:backgroundTint="#CDDC39" android:textStyle="bold" android:textSize="16sp"/>
+    <Button android:layout_width="match_parent"
             android:id="@+id/gotoLogin"
             android:text="로그인"
-            android:layout_height="wrap_content"/>
+            android:layout_height="60dp" android:backgroundTint="#CDDC39" android:textColor="#343030"
+            android:textStyle="bold" android:textSize="16sp"/>
 
 
 </LinearLayout>

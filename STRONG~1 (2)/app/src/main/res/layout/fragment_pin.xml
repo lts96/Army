@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".Application.fragment.PinFrag">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingHorizontal="40dp"
+              android:layout_gravity="center"
+              android:gravity="center"
+              tools:context=".Application.fragment.PinFrag">
+    <ImageView android:layout_width="match_parent"
+               android:src="@drawable/title_color"
+               android:layout_height="102dp"/>
+    <EditText android:layout_width="match_parent"
+              android:textSize="18sp"
+              android:gravity="center"
+              android:hint="핀을 입력하세요"
+              android:layout_height="wrap_content"/>
+    <Button
+            android:text="Button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
-
-</FrameLayout>
+            android:layout_height="wrap_content" android:id="@+id/button2" android:background="#CDDC39"
+            android:textSize="16sp" android:textStyle="bold"/>
+</LinearLayout>

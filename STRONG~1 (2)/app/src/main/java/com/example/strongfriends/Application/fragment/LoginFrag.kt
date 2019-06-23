@@ -2,6 +2,7 @@ package com.example.strongfriends.Application.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -76,11 +77,18 @@ class LoginFrag : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(count>0){
-                    if(loginPw.text.toString().length>0) loginButton.isEnabled=true
+                    if(loginPw.text.toString().length>0) {
+                        loginButton.isEnabled=true
+                        loginButton.background.setTint(Color.parseColor("#CDDC39"))
+                        loginButton.setTextColor(Color.parseColor("#343030"))
+                    }
                 }
-                else loginButton.isEnabled=false
+                else{
+                    loginButton.isEnabled=false
+                    loginButton.setTextColor(Color.parseColor("#817B7B"))
+                    loginButton.background.setTint(Color.parseColor("#EFEFE8"))
+                }
             }
-
         })
 
         loginPw.addTextChangedListener(object : TextWatcher {
@@ -94,9 +102,18 @@ class LoginFrag : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(count>0){
-                    if(loginId.text.toString().length>0) loginButton.isEnabled=true
+                    if(loginId.text.toString().length>0) {
+                        loginButton.isEnabled=true
+                        loginButton.background.setTint(Color.parseColor("#CDDC39"))
+                        loginButton.setTextColor(Color.parseColor("#343030"))
+                    }
                 }
-                else loginButton.isEnabled=false
+                else{
+                    loginButton.isEnabled=false
+                    loginButton.setTextColor(Color.parseColor("#817B7B"))
+                    loginButton.background.setTint(Color.parseColor("#EFEFE8"))
+
+                }
             }
 
         })

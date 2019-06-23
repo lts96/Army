@@ -6,9 +6,14 @@
               android:gravity="center"
 
               android:layout_height="match_parent"
-              tools:context=".Application.fragment.SignFrag">
+              tools:context=".Application.fragment.SignFrag" android:paddingHorizontal="50dp">
 
 
+    <TextView
+            android:text="회원가입"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:paddingBottom="40dp"
+            android:textSize="60sp" android:textStyle="bold" android:gravity="center" android:textColor="#141B45"/>
     <LinearLayout android:layout_width="match_parent"
                   android:paddingBottom="30dp"
                   android:gravity="center_vertical"
@@ -19,7 +24,8 @@
                   android:text="이름"
 
                   android:padding="10dp"
-                  android:layout_height="match_parent"/>
+                  android:layout_height="match_parent" android:textStyle="bold" android:shadowColor="#007A4B4B"
+                  android:textColor="#343030"/>
         <EditText android:layout_width="match_parent"
                   android:id="@+id/signName"
                   android:padding="10dp"
@@ -34,7 +40,7 @@
                   android:gravity="center"
                   android:text="아이디"
                   android:padding="10dp"
-                  android:layout_height="match_parent"/>
+                  android:layout_height="match_parent" android:textColor="#343030" android:textStyle="bold"/>
         <EditText android:layout_width="match_parent"
                   android:id="@+id/signId"
                   android:padding="10dp"
@@ -49,7 +55,7 @@
                   android:gravity="center"
                   android:text="비밀번호"
                   android:padding="10dp"
-                  android:layout_height="match_parent"/>
+                  android:layout_height="match_parent" android:textColor="#343030" android:textStyle="bold"/>
         <EditText android:layout_width="match_parent"
                   android:id="@+id/signPw"
                   android:padding="10dp"
@@ -64,7 +70,7 @@
                   android:gravity="center"
                   android:text="비밀번호확인"
                   android:padding="10dp"
-                  android:layout_height="wrap_content"/>
+                  android:layout_height="wrap_content" android:textColor="#343030" android:textStyle="bold"/>
         <EditText android:layout_width="match_parent"
                   android:id="@+id/signPwCheck"
                   android:padding="10dp"
@@ -73,11 +79,12 @@
     <Button android:layout_width="match_parent"
             android:id="@+id/signButton"
             android:text="회원가입"
-            android:layout_margin="10dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="60dp"
+            android:backgroundTint="#CDDC39" android:fallbackLineSpacing="false"
+            android:textStyle="bold" android:textSize="16sp" android:textColor="#343030"/>
     <Button android:layout_width="match_parent"
             android:id="@+id/signToSelect"
-            android:layout_margin="10dp"
+
             android:text="처음으로"
-            android:layout_height="wrap_content"/>
+            android:layout_height="60dp" android:textStyle="bold" android:textSize="16sp" android:textColor="#343030"/>
 </LinearLayout>

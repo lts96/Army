@@ -76,14 +76,14 @@ class LockService: Service() {
         super.onDestroy()
     }
 
-    fun ScreenLock(){
-        var filter= IntentFilter(Intent.ACTION_SCREEN_ON)
+    fun ScreenLock() {
+        var filter = IntentFilter(Intent.ACTION_SCREEN_ON)
         filter.addAction(Intent.ACTION_BOOT_COMPLETED)
         filter.addAction(Intent.ACTION_SCREEN_OFF)
         filter.addAction("com.example.strongfriends.lock.off")
-        broadcast=LockBroadcastReceiver()
-        registerReceiver(broadcast,filter)
-        isBroad=1
+        broadcast = LockBroadcastReceiver()
+        registerReceiver(broadcast, filter)
+        isBroad = 1
     }
 
 }

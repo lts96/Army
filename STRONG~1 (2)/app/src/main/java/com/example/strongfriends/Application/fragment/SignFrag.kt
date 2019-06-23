@@ -200,6 +200,9 @@ class SignFrag : Fragment() {
                         Toast.makeText(activity,"회원가입 실패 다시 입력해주세요",Toast.LENGTH_LONG).show()
                     })
         }
+        signToSelect.setOnClickListener {
+            (activity as SignFrag.callSignListener).signToSelect()
+        }
 
     }
 
