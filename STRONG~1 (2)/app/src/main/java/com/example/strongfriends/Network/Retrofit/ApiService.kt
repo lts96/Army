@@ -43,40 +43,22 @@ interface ApiService {
     ): Observable<Result>
 
     //@FormUrlEncoded
-    @PUT("main/log_in")
+    @POST("main/log_in")
     fun login(
         @Body body: login_body
     ): Observable<Result>
 
     // @FormUrlEncoded
-    @PUT("main/userlist/userQuery")
+    @POST("main/userlist/userQuery")
     fun periodicQuery(
         @Body body: Periodic_body
     ): Observable<Periodic_response>
 
-    @FormUrlEncoded
-    @PUT("main/enterRoom")
-    fun enterRoom(
-        @Field("userId") userid: String,
-        @Field("groupPin") pin: Int
-    ): Observable<EnterRoom_response>
 
-    @FormUrlEncoded
-    @PUT("main/groupId/violoation")
-    fun violation2(
-        @Field("userId") userId:String,
-        @Field("groupId")groupId:String,
-        @Field("violationId") violationId:String
-    )
-
-    @GET("main/loglist")
+    @POST("main/updateLog")
     fun violation(
+        @Body body:Log_body
         //@Path("userId")userName2:String,
-        @Query("userName")userName:String,
-        @Query("occurTime")time:String,
-        @Query("groupPin") groupPin:String,
-        @Query("violation") violationCode:Int
-
     ):Observable<String>
 
     @GET("main/gotoRoom/{userId}/{groupPin}")
@@ -84,6 +66,11 @@ interface ApiService {
         @Path("userId")userId:String,
         @Path("groupPin")groupPin:Int
     ):Observable<gotoRoom_response>
+
+    @GET("main/userlist/{userId}")
+    fun getUser(
+        @Path("userId")userId:String
+    ):Observable<User_response>
 
 
 

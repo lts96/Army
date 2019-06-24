@@ -16,7 +16,8 @@ class LockService: Service() {
     companion object{
         var broadcast:LockBroadcastReceiver=LockBroadcastReceiver() //락 온이랑 락 오프라는 브로드캐스트 리시버 (알람이 울리면 그걸 메인에서 받고 이걸 켜준다는 것이다.)
         var isStart=0 //스타트 포그라운드...
-        var isBroad=0 //현재 브로드캐스트 리시버가 달려있는지.
+        var isBroad=0 //현재 스크린 락을 하고있는가.
+        var isScreen=0 //현재 화면이 켜져있는가?
     }
     override fun onBind(intent: Intent?): IBinder? {
 
@@ -44,30 +45,31 @@ class LockService: Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int { //startService에서 여기로 넘어온다.
         Log.d("hsh","LockService : startService,$isStart}")
         if(isStart==0) //한번 실행되었던 놈이면 startForeground를 재실행 시키지는 않는다.
-            startForeground(1, NotificationFactory.create(applicationContext,"강한친구육군","강한친구 육군이 실행중입니다.", R.drawable.notification_template_icon_bg))
+            startForeground(1, NotificationFactory.create(applicationContext,"강한친구육군","세부사항을 보려면 클릭하세요.", R.drawable.notification_template_icon_bg))
         isStart=1
-        if(broadcast==null){
+      /*  if(broadcast==null){
             ScreenLock()
-        }
-        if(intent!=null) {
-            if(intent!!.extras["value"].equals("lock_on")){
-                if(isBroad!=1){
-                    ScreenLock()
+        }*/
+        ScreenLock()
+       /* if(intent!=null) {
+            if(intent!!.extras["value"].equals("lock_on")){ //시간이 되었다 락 해라.
+                if(isBroad!=1){ //이미 브로드 캐스트 리시버가 작동중이지 않으면,
+                    ScreenLock() // 레지스트 리시버
+                    Log.d("hsh","LockService의 락 온")
                     var intent=Intent(applicationContext,LockActivity::class.java)
                     startActivity(intent)
                 }
             }
-            else if(intent.extras["value"].equals("lock_off")){
+            else if(intent.extras["value"].equals("lock_off")){ //시간이 끝났다ㅣ 락 풀어라.
                 if(isBroad==1){
                     unregisterReceiver(broadcast)
                     isBroad=0
-
                 }
             }
             else if(intent.extras["value"].equals("start")){
 
             }
-        }
+        }*/
         return START_STICKY
     }
 
@@ -77,13 +79,13 @@ class LockService: Service() {
     }
 
     fun ScreenLock() {
+        Log.d("hsh","스크린락")
         var filter = IntentFilter(Intent.ACTION_SCREEN_ON)
         filter.addAction(Intent.ACTION_BOOT_COMPLETED)
         filter.addAction(Intent.ACTION_SCREEN_OFF)
         filter.addAction("com.example.strongfriends.lock.off")
+        filter.addAction("com.example.strongfriends.lock.on")
         broadcast = LockBroadcastReceiver()
         registerReceiver(broadcast, filter)
-        isBroad = 1
     }
-
 }

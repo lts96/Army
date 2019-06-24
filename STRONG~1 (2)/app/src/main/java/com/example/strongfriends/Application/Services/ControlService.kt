@@ -98,7 +98,6 @@ class ControlService : Service() {
                 var msg=Message.obtain(null,0,0,0) //what은 0 으로 0 이라는 값을 보냈다.
                // msg.replyTo= MainService.mActivityMessenger
                 lockMessenger?.send(msg)
-
             } catch(e:Exception){
                 Log.d("hsh","MainService : 에서 커넥션이 되었을 때, 내가 내가 만든 서비스한테 메세지 보냄. ${e.message}")
             }
@@ -106,22 +105,21 @@ class ControlService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder? { //아 이따위로 하면 안됨. 일단 시작하고 봐야됨. 아아앙잘못생각햇ㅈ.
+        Log.d("hsh","ControlService : 온바인드 .")
         getOption() //일단 바인드가 되었다? 무언가 바뀌었다. 그러면 돌고있는 서비스들한테 다 갱신해라! 라고 알려줘얗나다.
         if(totalAble==1){
-            if(isLockControl==1){
+            Log.d("hsh","ControlService : 제어가 시작됩니다.")
+            if(isLockControl==1){ //수정
                 setLock()
             }
+
                 setCamera()
              //락에대한 거 세팅.
+        }else{
+            Log.d("hsh","ControlService : 외출/외박 상태입니다.")
         }
-
-        //Log.d("hsh","ControlService : OnBind")
         return mServiceMessenger!!.binder
     }
-
-
-
-
 
     fun setCamera(){
         var intent=Intent(applicationContext,AdminService::class.java)
@@ -146,7 +144,6 @@ class ControlService : Service() {
                 applicationContext.startService(intent)
                 Log.d("hsh","ControlService: 알람이 세팅되어 있지 않지만, 스크린 Lock Time 도 아닙니다. 세팅X")
             }
-
         }
         if(now.isBefore(end)&&now.isAfter(start)){
             Log.d("hsh","스크린Lock TIme입니다. ")
@@ -176,10 +173,6 @@ class ControlService : Service() {
 
     fun setAlarm(){ //최신 옵션이 생겼을때만 컨트롤 서비스는 호출이 된다.
         //var pend=PendingIntent.getBroadcast(applicationContext,"com.example.strongfriends.lock.on")
-
-
-
-
         var intent=Intent("com.example.strongfriends.lock.on")
         var timer=Option.getFormattedTime()
         var alarmMessenger=applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager //알람 매니저 여따가 등록할 것이다.

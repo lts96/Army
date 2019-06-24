@@ -40,24 +40,14 @@ class LockActivity : AppCompatActivity(){
         Log.d("hsh","락액티비티 온크리에이트")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lock)
-        if(LockService.isBroad==1) {
-            button.text = "해제불가"
-            button.isEnabled = true
-        }
-        else{
-            button.text="눌러서해제" //여기서 말고 이 내용을 브로드 캐스트 리시버 하나 등록해놓고 받아서 해볼까?
-            button.isEnabled=true
-        }
-        button.setOnClickListener {
-            finish()
-        }
+
 
         var filter = IntentFilter("com.example.strongfriends.lock.off")
         lockActivityBroad=LockBroad()
 
-       if(isBroad==0){
-           Log.d("hsh","LockActivity: 브로드캐스트 리시버 붙인다.ㅅㅂ")
-           registerReceiver(lockActivityBroad, filter)
+       if(isBroad==0){ //브로드가 0이면?
+           Log.d("hsh","LockActivity: 브로드캐스트 리시버 붙인다.")
+           registerReceiver(lockActivityBroad, filter) //레지스터 등록시킨다 이게 왜 필요하지.
            isBroad=1
        }else{
            Log.d("hsh","LockActivity: 브로드캐스트 리시버 이미있따.")
@@ -79,8 +69,7 @@ class LockActivity : AppCompatActivity(){
         Log.d("hsh","락액티비티 온스타트")
 
         if(LockService.isBroad==1) {
-            button.text = "해제불가"
-            button.isEnabled = false
+
         }
         super.onStart()
 
@@ -154,8 +143,7 @@ class LockActivity : AppCompatActivity(){
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.d("hsh","LockActivity: onAcitivtyResult$requestCode ")
         if(requestCode==18){
-            button.text="눌러서해제" //여기서 말고 이 내용을 브로드 캐스트 리시버 하나 등록해놓고 받아서 해볼까?
-            button.isEnabled=true
+
             Log.d("hsh","${lockActivityBroad.toString()}")
            // unregisterReceiver(lockActivityBroad)
             Log.d("hsh","LockActivity: 뭐가 문제야씨발")

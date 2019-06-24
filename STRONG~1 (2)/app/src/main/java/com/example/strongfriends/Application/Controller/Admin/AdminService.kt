@@ -10,6 +10,7 @@ import android.content.IntentFilter
 import android.os.IBinder
 import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.util.Log
+import com.example.strongfriends.Application.Activity.Login
 import com.example.strongfriends.Application.Notification.NotificationFactory
 import com.example.strongfriends.Application.Services.Option
 import com.example.strongfriends.R
@@ -33,8 +34,10 @@ class AdminService: Service() {
 
         Log.d("hsh","AdminService: onStartCommand.")
         setPolicyManager()
-        startForeground(1, NotificationFactory.create(applicationContext,"강한친구육군","강한친구 육군이 실행중입니다.", R.drawable.notification_template_icon_bg))
-        return START_STICKY
+        Log.d("hsh","AdminService: 여기니.")
+        startForeground(1, NotificationFactory.create(applicationContext,"강한친구육군","세부사항을 보려면 클릭하세요.", R.drawable.notification_template_icon_bg))
+        Log.d("hsh","AdminService: 여기?.")
+        return START_NOT_STICKY
     }
 
     fun setPolicyManager(){
@@ -64,6 +67,9 @@ class AdminService: Service() {
     override fun onDestroy() {
         if(isAdmin==1)unregisterReceiver(adminReceivere)
         Log.d("hsh","Adminserservice : onDestroy.")
+        val intent=Intent(applicationContext,Login::class.java)
+        startActivity(intent)
+
         super.onDestroy()
     }
 

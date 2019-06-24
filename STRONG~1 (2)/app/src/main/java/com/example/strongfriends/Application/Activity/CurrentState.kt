@@ -8,9 +8,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
+import com.example.strongfriends.Application.Activity.Datas.register_body
 import com.example.strongfriends.Application.Controller.ScreenControl.LockActivity
 import com.example.strongfriends.Application.Controller.ScreenControl.LockService
+import com.example.strongfriends.Application.Services.Option
+import com.example.strongfriends.Application.SharedPreferences.PrefApp
+import com.example.strongfriends.Application.fragment.SignFrag
+import com.example.strongfriends.Network.Retrofit.ApiService
 import com.example.strongfriends.R
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_current_state.*
+import kotlinx.android.synthetic.main.fragment_sign.*
 
 class CurrentState : AppCompatActivity() {
 
@@ -18,10 +29,34 @@ class CurrentState : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_current_state)
         init()
+
     }
 
     fun init() {
+        val disposable = CompositeDisposable()
 
+        currentState.setOnClickListener {
+            finish()
+        }
+
+        disposable.add(
+            ApiService.create().getUser(
+                Option.user_id
+            )
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ it ->
+                    Log.d("hsh", "CurrentStateActivity : ${it.toString()}")
+                    currStateName.text="${it.name}"
+                    currStateCamera.text="${it.camera}"
+                    currStateGroup.text="${it.groupName}"
+                    currStateId.text="${it.userId}"
+                    currStatePin.text="${it.groupPin}"
+                    //여기에서 만약 옵션도 같이 왔다면, 현재 바인드 서비스가 되어있는 CottrolService 에게 알림을 보낸다.
+                }) {
+                    Log.d("LOG", "Error, ${it.message}")
+
+                })
     }
 
     override fun onAttachedToWindow() {

@@ -220,6 +220,7 @@ class SignFrag : Fragment() {
                         PrefApp.prefs.myPrefId = signId.text.toString()
                         PrefApp.prefs.myPrefPw = signPw.text.toString()
                         //여기에서 만약 옵션도 같이 왔다면, 현재 바인드 서비스가 되어있는 CottrolService 에게 알림을 보낸다.
+                        Toast.makeText(activity, "회원가입 성공!", Toast.LENGTH_LONG).show()
                         (activity as SignFrag.callSignListener).signToSelect()
                     }) {
                         Log.d("LOG", "Error, ${it.message}")
